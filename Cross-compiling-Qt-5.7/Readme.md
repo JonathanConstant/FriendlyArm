@@ -1,7 +1,7 @@
 Here are the steps for cross-compiling Qt 5.7 for the NanoPi M3 (it would probably work with other FriendlyArm boards) 
 
 ###Step 1 : Configure the board 
-Because libts-dev is not in the debian packages, we add the wheezy distribution for apt-get 
+Because libts-dev is not in the debian packages, we add the wheezy distribution for apt-get   
 Add the following lines at the end of the file sources.list :       
 > sudo nano /etc/apt/sources.list  
 > deb http://ftp.cn.debian.org/debian wheezy main non free contrib  
@@ -17,7 +17,7 @@ Install some libraries :
 > sudo apt-get install libdbus-1-dev libdbus-c++-dev  
 
 ###Step 2 : Configure the host 
-(maybe you will have to install some others libraries in your host, message will appear during the configure or the make)  
+(maybe you will have to install some others libraries in your host, error messages will appear during the configure or the make)  
 
 Download the cross-compiler, I took the cross compiler of the raspberry _gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-_  
 Download Qt 5.7 with the sources  
@@ -31,7 +31,7 @@ Create the sysroot directory and synchronize the files with the board, replace I
 
 Download the device config file linux-nanopi-m3-g++ and copy it in your Qt directory Qt5.7/5.7/Src/qtbase/mkspecs/devices
 
-To use OpenGL we need to do some modifications in Qt srouces :
+To use OpenGL we need to do some modifications in Qt srouces because the struct fbdev_window is already defined in the board :  
 > nano Qt-5.7.0/5.7/Src/qtbase/src/plugins/platforms/eglfs/deviceintegration/eglfs_mali/qeglfsmaliintegration.cpp
 
 Change every "fbdev_window" in "fbdev_window2"
@@ -54,6 +54,12 @@ Install the debugger on the host :
 
 Configure Qt Creator with your board, the cross compiler and the debugger and if all is fine, Qt must work on your NanoPi M3 ! 
 Enjoy :)
+
+One last thing, if you want to use OpenGL and if the kernel has been installed with only one framebuffer fb0, you need to boot your nanoPi in console mode.  
+Here are the commands to boot to console :  
+> systemctl set-default multi-user.target  
+> ln -s /lib/systemd/system/getty@.service /etc/systemd/system/getty.target.wants/getty@tty1.service  
+
 
 
 
