@@ -18,6 +18,6 @@ Execute the following commands:
 Reboot your NanoPI-M3 and bluetooth is working.
 
 If you want to install this patch with a newer version of bluez, you need to run the following commands at boot:
-> systemctl start bluetooth
+> systemctl start bluetooth  
 > sudo /usr/bin/hciattach /dev/ttySAC1 bcm43xx 921600 flow  
 > sudo hciconfig hci0 up  
