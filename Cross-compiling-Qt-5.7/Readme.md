@@ -2,7 +2,7 @@
   
   On the board : 
     
-    **Step 1 :** 
+    **Step** 1 : 
       - Because libts-dev is not in the debian packages, we add the wheezy distribution for apt-get 
       Add the following line at the end of the file sources.list :
       
