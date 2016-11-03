@@ -19,7 +19,7 @@ Install some libraries :
 ###Step 2 : Configure the host 
 (maybe you will have to install some others libraries in your host, error messages will appear during the configure or the make)  
 
-Download the cross-compiler, I took the cross compiler of the raspberry _gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-_  
+Download the cross-compiler, I took the cross compiler of the raspberry _gcc-linaro-arm-linux-gnueabihf-raspbian-x64_  
 Download Qt 5.7 with the sources  
 Create the sysroot directory and synchronize the files with the board, replace IP with yours:    
 
