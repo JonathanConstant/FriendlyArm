@@ -16,7 +16,9 @@ Install some libraries :
 > sudo apt-get install libbluetooth-dev   
 > sudo apt-get install libdbus-1-dev libdbus-c++-dev  
 
-###Step 2 : Configure the host
+###Step 2 : Configure the host 
+(maybe you will have to install some others libraries in your host, message will appear during the configure or the make)  
+
 Download the cross-compiler, I took the cross compiler of the raspberry _gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-_  
 Download Qt 5.7 with the sources  
 Create the sysroot directory and synchronize the files with the board, replace IP with yours:    
@@ -36,7 +38,24 @@ Change every "fbdev_window" in "fbdev_window2"
 
 ###Step3 : Compile Qt
 Go to Qt5.7/5.7/Src and execute the following command, think to change the path with yours (I don't install qt3d and qtwayland modules):
-> ./configure -release -opengl es2 -device linux-nanopi-m3-g++ -device-option CROSS_COMPILE=/home/jonathan/NanoPIM3/cross_compile/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf- -sysroot /home/jonathan/NanoPIM3/cross_compile/sysroot -opensource -confirm-license -make libs -prefix /usr/local/qt5pi -extprefix /home/jonathan/NanoPIM3/cross_compile/qt5pi -hostprefix /home/jonathan/NanoPIM3/cross_compile/qt5 -skip qt3d -skip qtwayland -I /home/jonathan/NanoPIM3/cross_compile/sysroot/usr/nexell/include/khronos -L /home/jonathan/NanoPIM3/cross_compile/sysroot/usr/nexell/lib -v
+> ./configure -release -opengl es2 -device linux-nanopi-m3-g++ -device-option CROSS_COMPILE=/home/jonathan/NanoPIM3/cross_compile/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf- -sysroot /home/jonathan/NanoPIM3/cross_compile/sysroot -opensource -confirm-license -make libs -prefix /usr/local/qt5pi -extprefix /home/jonathan/NanoPIM3/cross_compile/qt5pi -hostprefix /home/jonathan/NanoPIM3/cross_compile/qt5 -skip qt3d -skip qtwayland -I /home/jonathan/NanoPIM3/cross_compile/sysroot/usr/nexell/include/khronos -L /home/jonathan/NanoPIM3/cross_compile/sysroot/usr/nexell/lib -v  
+
+> make  
+> sudo make install  
+
+Synchronize Qt with your board :  
+> rsync -avz qt5pi fa@IP:/usr/local  
+
+Install the debugger on the board :
+> sudo apt-get install gdbserver
+
+Install the debugger on the host :
+> sudo apt-get install gdb-multiarch 
+
+Configure Qt Creator with your board, the cross compiler and the debugger and if all is fine, Qt must work on your NanoPi M3 ! 
+Enjoy :)
+
+
 
 
   
