@@ -29,7 +29,7 @@ Create the sysroot directory and synchronize the files with the board, replace I
 > rsync -avz fa@IP:/usr/lib sysroot/usr  
 > rsync -avz fa@IP:/usr/nexell sysroot/usr  
 
-Download the device config file linux-nanopi-m3-g++ and copy it in your Qt directory Qt5.7/5.7/Src/qtbase/mkspecs/devices
+Download the device folder _linux-nanopi-m3-g++_ and copy it in your Qt directory Qt5.7/5.7/Src/qtbase/mkspecs/devices
 
 To use OpenGL we need to do some modifications in Qt srouces because the struct fbdev_window is already defined in the board :  
 > nano Qt-5.7.0/5.7/Src/qtbase/src/plugins/platforms/eglfs/deviceintegration/eglfs_mali/qeglfsmaliintegration.cpp
